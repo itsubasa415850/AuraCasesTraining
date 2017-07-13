@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS `sparkcore_dimension_data` (
   `day` DATE NOT NULL,
   `pv` INT(11) UNSIGNED NOT NULL,
   `uv` INT(11) UNSIGNED NOT NULL,
+  `nuv` INT(11) UNSIGNED DEFAULT 0,
   `ip` INT(11) UNSIGNED NOT NULL,
   `time` BIGINT(20) UNSIGNED NOT NULL,
   PRIMARY KEY (`dimeid`,`day`)

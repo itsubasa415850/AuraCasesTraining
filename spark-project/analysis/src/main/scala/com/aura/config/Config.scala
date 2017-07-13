@@ -20,6 +20,7 @@ object Config {
   var backslash: String = "/"
   var default_ses_time: Long = 1800
   var reduce_result_filename: String = "part-r-00000"
+  var input_dir: String = null
   /**
     * Kafka参数
     */
@@ -32,8 +33,9 @@ object Config {
   }
 
   def input_path: String = {
+    assert(input_dir != null, "should set input_dir before run")
     assert(day != null, "should set day before run")
-    "data/logs/aura" + day.replace("-", "") + ".log"
+    input_dir + "/data/logs/aura" + day.replace("-", "") + ".log"
   }
 
   private def loadConfig(config: PropertiesConfiguration) {
@@ -43,6 +45,7 @@ object Config {
     if (config.containsKey("db_url")) {
       db_url = config.getString("db_url")
     }
+    input_dir = config.getString("input_dir")
     if (config.containsKey("username")) {
       username = config.getString("username")
     }
@@ -67,6 +70,7 @@ object Config {
   def main(args: Array[String]) {
     System.out.println(Config.day)
     System.out.println(Config.input_path)
+    System.out.println(Config.input_dir)
     System.out.println(Config.driver_class)
     System.out.println(Config.db_url)
     System.out.println(Config.username)

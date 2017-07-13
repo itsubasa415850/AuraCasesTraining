@@ -18,6 +18,11 @@ class Log extends Serializable {
   @BeanProperty var Title: String = ""
 
   @BeanProperty var wd: Wd = null
+  @BeanProperty var IsNewUser = ""
+
+  def isNewUser(): Boolean = {
+    IsNewUser != null && IsNewUser.equals("true")
+  }
 
   def getPagetype(): Char = {
     if(wd != null && wd.getT() != null) {

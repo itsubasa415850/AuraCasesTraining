@@ -141,7 +141,10 @@ object StreamingAnalysis {
     val conf = SparkUtil.getSparkConf(this.getClass)
 
     val ssc = new StreamingContext(conf, Seconds(second))
-    val kafkaParams = Map[String, String]("metadata.broker.list" -> brokerList, "auto.offset.reset" -> "smallest", "group.id" -> "tvStreaming")
+    val kafkaParams = Map[String, String](
+      "metadata.broker.list" -> brokerList,
+      "auto.offset.reset" -> "smallest",
+      "group.id" -> "tvStreaming")
     val stream = KafkaUtils.createDirectStream[String, String, StringDecoder, StringDecoder](ssc, kafkaParams, Set(topic))
 
     /**

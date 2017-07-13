@@ -1,5 +1,6 @@
 package com.aura.spark.mllib
 
+import com.aura.config.Config
 import org.apache.spark.mllib.classification.SVMWithSGD
 import org.apache.spark.mllib.feature.HashingTF
 import org.apache.spark.mllib.regression.LabeledPoint
@@ -24,7 +25,7 @@ object GenderModel {
       fs.delete(modelPath, true)
     }
 
-    val list: ListBuffer[Training] = FileUtil.getTrainingList("data/ml/gender.txt")
+    val list: ListBuffer[Training] = FileUtil.getTrainingList(Config.input_dir + "/data/ml/gender.txt")
     val arr = FileUtil.getTrainingArrayBuffer(list)
 
     val data = sc.parallelize(arr)

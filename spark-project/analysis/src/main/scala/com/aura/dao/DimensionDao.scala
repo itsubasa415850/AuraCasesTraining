@@ -74,7 +74,12 @@ object DimensionDao {
     * @return
     */
   def saveDimensionData(dimension: Dimension): Int = {
-    val sql: String = "insert into sparkcore_dimension_data(dimeid,`day`,pv,uv,ip,time) values (#{dimeId},#{day},#{pv},#{uv},#{ip},#{time}) on duplicate key update pv = values(pv),uv = values(uv),ip = values(ip),time = values(time)"
+    val sql =
+      """
+        | insert into sparkcore_dimension_data(dimeid,`day`,pv,uv,nuv,ip,time)
+        | values (#{dimeId},#{day},#{pv},#{uv},#{nuv},#{ip},#{time})
+        | on duplicate key update pv=values(pv), uv=values(uv), nuv=values(nuv), ip=values(ip), time=values(time)
+      """.stripMargin
     BasicSimpleDao.saveObject(sql, dimension)
   }
 
@@ -85,7 +90,11 @@ object DimensionDao {
     * @return
     */
   def saveDimensionList(list: List[Dimension]): Int = {
-    val sql: String = "insert into sparkcore_dimension_data(dimeid,`day`,pv,uv,ip,time) values (#{dimeId},#{day},#{pv},#{uv},#{ip},#{time}) on duplicate key update pv = values(pv),uv = values(uv),ip = values(ip),time = values(time)"
+    val sql =
+      """
+        | insert into sparkcore_dimension_data(dimeid,`day`,pv,uv,nuv,ip,time)
+        | on duplicate key update pv=values(pv), uv=values(uv), nuv=values(nuv), ip=values(ip), time=values(time)
+      """.stripMargin
     BasicSimpleDao.saveListBatch(sql, list)
   }
 

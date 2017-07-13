@@ -10,6 +10,7 @@ public class Dimension {
 	private Integer dimeId;
 	private Integer pv;
 	private Integer uv;
+	private Integer nuv;
 	private Integer ip;
 	private Long time;
 	
@@ -70,6 +71,12 @@ public class Dimension {
 	}
 	public void setUv(Integer uv) {
 		this.uv = uv;
+	}
+	public void setNuv(Integer nuv) {
+		this.nuv = nuv;
+	}
+	public Integer getNuv() {
+		return nuv;
 	}
 	public Integer getIp() {
 		return ip;

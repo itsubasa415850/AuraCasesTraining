@@ -19,9 +19,11 @@ object KafkaLogsProducer {
     val kafkaConfig = new ProducerConfig(props)
     val producer = new Producer[String, String](kafkaConfig)
 
-    (1 to 7).map(i => s"data/logs/aura2016120$i.log").foreach { path =>
+    (1 to 7).map(i => s"spark-project/analysis/data/logs/aura2016120$i.log").foreach { path =>
       println(s"read log from $path and replay to kafka $topic")
       FileUtil.readFileAsLines(path).foreach( line => {
+        println(line)
+        Thread.sleep(10)
         producer.send(new KeyedMessage[String, String](topic, line))
       })
     }

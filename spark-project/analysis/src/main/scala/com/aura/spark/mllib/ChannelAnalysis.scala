@@ -36,7 +36,11 @@ object ChannelAnalysis {
     val map = filter.map(
       log => {
         val training: Training = new Training(pv = 1,uv = 1,ip = 1)
-        training.channelId = model.predict(tf.transform(FileUtil.getTrainingString(log.getClearTitle()))).toInt
+        training.channelId = model.predict(
+          tf.transform(
+            FileUtil
+              .getTrainingString(log.getClearTitle())
+          )).toInt
 
         training.uvs += log.Uuid
         training.ips += log.Ip

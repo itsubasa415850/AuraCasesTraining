@@ -79,15 +79,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	var uvs = [];
 	    	var ips = [];
 	    	var times = [];
+	    	var nuvs = [];
 	    	data.map(function(item) {
 	    		days.push(item.day);
 	    		pvs.push(item.pv);
 	    		uvs.push(item.uv);
 	    		ips.push(item.ip);
 	    		times.push(item.time);
+	    		nuvs.push(item.nuv)
 	    	})
-	    	var types = ["页面浏览量","访问者数","访问IP数"]
-	    	var datas = [pvs,uvs,ips];
+	    	var types = ["页面浏览量","访问者数","访问IP数","总时长","新用户数"]
+	    	var datas = [pvs,uvs,ips,times,nuvs];
 	    	var option = getOptionFlow("流量统计", types, days, datas);
 			chartFlow.setOption(option);
 		});

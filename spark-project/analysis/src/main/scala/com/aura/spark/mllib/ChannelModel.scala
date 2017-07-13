@@ -1,5 +1,6 @@
 package com.aura.spark.mllib
 
+import com.aura.config.Config
 import org.apache.spark.mllib.classification.NaiveBayes
 import org.apache.spark.mllib.feature.HashingTF
 import org.apache.spark.mllib.regression.LabeledPoint
@@ -25,7 +26,7 @@ object ChannelModel {
       fs.delete(modelPath, true)
     }
 
-    val list: ListBuffer[Training] = FileUtil.getTrainingList("data/ml/channel.txt")
+    val list: ListBuffer[Training] = FileUtil.getTrainingList(Config.input_dir +"/data/ml/channel.txt")
     val arr = FileUtil.getTrainingArrayBuffer(list)
 
     val data = sc.parallelize(arr)
